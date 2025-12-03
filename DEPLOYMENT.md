@@ -1,6 +1,7 @@
 # Azure Deployment Guide
 
 ## Prerequisites
+
 - Azure account with an active subscription
 - GitHub repository with your code pushed
 
@@ -10,6 +11,7 @@
 2. Click "Create a resource"
 3. Search for "Static Web App" and click Create
 4. Fill in the details:
+
    - **Subscription**: Select your subscription
    - **Resource Group**: Create new or use `movies-rg`
    - **Name**: `swa-movies-app` (or your preferred name)
@@ -41,20 +43,24 @@
 3. Click "New repository secret" and add these secrets:
 
    **Secret 1:**
+
    - Name: `AZURE_STATIC_WEB_APPS_API_TOKEN`
    - Value: [Paste the deployment token from Step 2]
 
    **Secret 2:**
+
    - Name: `TMDB_API_KEY`
    - Value: `597eb24bc39938374c88361b49883eea`
 
    **Secret 3:**
+
    - Name: `AZURE_STORAGE_CONNECTION_STRING`
    - Value: [Your Azure Storage connection string from Azure Portal → Storage Account → Access keys]
 
 ## Step 4: Deploy
 
 1. Commit and push your code:
+
    ```bash
    git add .
    git commit -m "Add GitHub Actions workflow for Azure deployment"
@@ -74,6 +80,7 @@
 
 5. Go to GitHub: https://github.com/settings/developers
 6. Create a NEW OAuth App (separate from local development):
+
    - **Application name**: `Movies App Production`
    - **Homepage URL**: Your SWA URL from step 4
    - **Authorization callback URL**: `https://swa-movies-app.azurestaticapps.net/.auth/login/github/callback`
@@ -93,6 +100,7 @@
 ## Automatic Deployments
 
 Every time you push to the `main` branch, GitHub Actions will automatically:
+
 1. Build your React app
 2. Deploy to Azure Static Web Apps
 3. Deploy your Azure Functions
@@ -101,14 +109,17 @@ Every time you push to the `main` branch, GitHub Actions will automatically:
 ## Troubleshooting
 
 ### Build Fails
+
 - Check the GitHub Actions logs in the "Actions" tab
 - Ensure all secrets are correctly set
 
 ### Functions Not Working
+
 - Check that `AZURE_STORAGE_CONNECTION_STRING` and `TMDB_API_KEY` are set in GitHub Secrets
 - Verify the `api` folder structure is correct
 
 ### Authentication Issues
+
 - Check that the OAuth app callback URL matches your SWA URL exactly
 - Azure SWA handles GitHub auth automatically - no manual provider configuration needed
 

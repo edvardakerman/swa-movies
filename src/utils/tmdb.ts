@@ -40,7 +40,12 @@ export const formatRating = (rating: number): string => {
 
 // Get YouTube embed URL
 export const getYouTubeEmbedUrl = (videoKey: string): string => {
-  return `https://www.youtube.com/embed/${videoKey}`;
+  return `https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`;
+};
+
+// Get YouTube watch URL as fallback
+export const getYouTubeWatchUrl = (videoKey: string): string => {
+  return `https://www.youtube.com/watch?v=${videoKey}`;
 };
 
 // Debounce function for search

@@ -6,6 +6,7 @@ import {
   formatReleaseDate,
   formatRuntime,
   getYouTubeEmbedUrl,
+  getYouTubeWatchUrl,
 } from "../utils/tmdb";
 import { WatchlistButton } from "../components/WatchlistButton";
 import { MovieCard } from "../components/MovieCard";
@@ -18,8 +19,10 @@ export const MovieDetail = () => {
   const [trailer, setTrailer] = useState<Video | null>(null);
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (id) {
       loadMovieData(parseInt(id));
     }
@@ -159,15 +162,46 @@ export const MovieDetail = () => {
         {trailer && (
           <div className="space-y-2">
             <h2 className="text-lg font-bold text-white">Trailer</h2>
-            <div className="aspect-video rounded-lg overflow-hidden">
-              <iframe
-                src={getYouTubeEmbedUrl(trailer.key)}
-                title={trailer.name}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            {videoError ? (
+              <div className="aspect-video rounded-lg bg-gray-800 flex flex-col items-center justify-center p-6 text-center">
+                <svg
+                  className="w-16 h-16 text-gray-600 mb-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" />
+                </svg>
+                <p className="text-gray-400 mb-4">
+                  This video cannot be embedded
+                </p>
+                <a
+                  href={getYouTubeWatchUrl(trailer.key)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors inline-flex items-center gap-2"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  Watch on YouTube
+                </a>
+              </div>
+            ) : (
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  src={getYouTubeEmbedUrl(trailer.key)}
+                  title={trailer.name}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  onError={() => setVideoError(true)}
+                />
+              </div>
+            )}
           </div>
         )}
 

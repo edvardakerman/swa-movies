@@ -12,6 +12,7 @@ export const Popular = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     loadMovies(1);
   }, []);
 
