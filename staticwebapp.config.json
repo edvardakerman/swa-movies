@@ -17,6 +17,7 @@
     "apiRuntime": "node:20"
   },
   "globalHeaders": {
-    "cache-control": "no-cache"
+    "cache-control": "no-cache",
+    "referrer-policy": "strict-origin-when-cross-origin"
   }
 }

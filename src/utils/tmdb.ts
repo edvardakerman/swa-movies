@@ -39,8 +39,13 @@ export const formatRating = (rating: number): string => {
 };
 
 // Get YouTube embed URL
+// export const getYouTubeEmbedUrl = (videoKey: string): string => {
+//   return `https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`;
+// };
+
+// Get YouTube embed URL (AZURE-SAFE)
 export const getYouTubeEmbedUrl = (videoKey: string): string => {
-  return `https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`;
+  return `https://www.youtube-nocookie.com/embed/${videoKey}`;
 };
 
 // Get YouTube watch URL as fallback
