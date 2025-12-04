@@ -15,7 +15,11 @@ export const Header = () => {
     <header className="sticky top-0 z-50 bg-gray-900 border-b border-gray-700">
       <div className="max-w-2xl mx-auto px-3 py-3 flex items-center justify-between">
         <h1 className="text-xl font-bold text-white flex items-center gap-2">
-          <span>🎬</span>
+          <img
+            src="public/apple-touch-icon.png"
+            alt="popcorn"
+            className="h-12"
+          />
           <span>Movies</span>
         </h1>
         <div className="flex items-center gap-3">
