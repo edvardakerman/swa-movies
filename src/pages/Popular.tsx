@@ -44,29 +44,55 @@ export const Popular = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-gray-950 border-b border-gray-700">
-        <div className="max-w-2xl mx-auto px-3 py-4 flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+      {/* Sticky Buttons */}
+      <div className="sticky top-0 z-50 flex items-center justify-between px-3 -mb-8 pt-4">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <h1 className="text-xl font-bold text-white">Popular Movies</h1>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        {/* Middle Section */}
+
+        {/* X Button */}
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <span className="text-white font-bold text-lg mx-auto">
+          Popular Movies
+        </span>
       </div>
 
       <div className="max-w-2xl mx-auto px-3 py-6 space-y-6">

@@ -88,10 +88,10 @@ export const MovieDetail = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
 
-        {/* Back button */}
+        {/* Fixed Back button */}
         <button
           onClick={() => navigate(-1)}
-          className="absolute top-4 left-4 p-2 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors"
+          className="fixed top-4 left-3 z-50 p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
         >
           <svg
             className="w-6 h-6 text-white"
@@ -108,25 +108,46 @@ export const MovieDetail = () => {
           </svg>
         </button>
 
-        {/* Bookmark button */}
-        <div className="absolute top-4 right-4">
-          <WatchlistButton
-            movie={{
-              movieId: movie.id,
-              title: movie.title,
-              posterPath: movie.poster_path,
-              backdropPath: movie.backdrop_path,
-              releaseDate: movie.release_date,
-              voteAverage: movie.vote_average,
-            }}
-          />
-        </div>
+        {/* Fixed X button → Dashboard */}
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="fixed top-4 right-3 z-50 p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
 
       <div className="max-w-2xl mx-auto px-3 py-6 space-y-6">
         {/* Movie Info */}
         <div className="space-y-3">
-          <h1 className="text-2xl font-bold text-white">{movie.title}</h1>
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="text-2xl font-bold text-white leading-tight">
+              {movie.title}
+            </h1>
+
+            <WatchlistButton
+              movie={{
+                movieId: movie.id,
+                title: movie.title,
+                posterPath: movie.poster_path,
+                backdropPath: movie.backdrop_path,
+                releaseDate: movie.release_date,
+                voteAverage: movie.vote_average,
+              }}
+            />
+          </div>
 
           {movie.tagline && (
             <p className="text-sm text-gray-400 italic">"{movie.tagline}"</p>
