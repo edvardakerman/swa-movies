@@ -7,7 +7,7 @@ import { MovieCard } from "../components/MovieCard";
 import type { Movie, WatchlistItem } from "../types";
 
 export const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [watchlist, setWatchlist] = useState<WatchlistItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -119,38 +119,26 @@ export const Dashboard = () => {
         </div>
       </section>
 
-      {/* Info Cards */}
-      <section className="grid grid-cols-3 gap-2">
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-purple-900/30 border border-purple-700 rounded-lg p-3 text-center hover:bg-purple-900/50 transition-colors"
+      {/* Profile & Sign Out Section */}
+      {/* Profile & Sign Out Section */}
+      <section className="pt-6 border-t border-gray-800 flex flex-col items-center space-y-3">
+        <img
+          src="/apple-touch-icon.png"
+          alt="Movies app icon"
+          className="w-14 h-14 rounded-xl"
+        />
+
+        <div className="text-center">
+          <p className="text-[11px] text-gray-400">Signed in as</p>
+          <p className="text-sm text-white font-semibold">{getFirstName()}</p>
+        </div>
+
+        <button
+          onClick={signOut}
+          className="px-4 py-1.5 rounded-md border border-black text-black text-xs font-semibold bg-white transition-colors"
         >
-          <div className="text-2xl mb-1">🐙</div>
-          <div className="text-xs text-white font-semibold">GitHub</div>
-          <div className="text-[10px] text-gray-400 mt-1">Source Code</div>
-        </a>
-        <a
-          href="https://azure.microsoft.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-blue-900/30 border border-blue-700 rounded-lg p-3 text-center hover:bg-blue-900/50 transition-colors"
-        >
-          <div className="text-2xl mb-1">☁️</div>
-          <div className="text-xs text-white font-semibold">Azure</div>
-          <div className="text-[10px] text-gray-400 mt-1">Cloud Storage</div>
-        </a>
-        <a
-          href="https://www.themoviedb.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-green-900/30 border border-green-700 rounded-lg p-3 text-center hover:bg-green-900/50 transition-colors"
-        >
-          <div className="text-2xl mb-1">🎬</div>
-          <div className="text-xs text-white font-semibold">TMDB</div>
-          <div className="text-[10px] text-gray-400 mt-1">Movie Data</div>
-        </a>
+          Sign Out
+        </button>
       </section>
     </div>
   );

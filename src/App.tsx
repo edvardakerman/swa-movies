@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { useAuth } from "./hooks/useAuth";
-import { Header } from "./components/Header";
 import { Dashboard } from "./pages/Dashboard";
 import { MovieDetail } from "./pages/MovieDetail";
 import { Popular } from "./pages/Popular";
@@ -47,12 +46,7 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="min-h-screen bg-gray-950">
-      <Header />
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen bg-gray-950">{children}</div>;
 };
 
 function App() {

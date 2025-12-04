@@ -7,7 +7,11 @@ export const Login = () => {
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
       <div className="max-w-md w-full space-y-8 text-center">
         <div>
-          <h1 className="text-6xl mb-4">🎬</h1>
+          <img
+            src="/apple-touch-icon.png"
+            alt="Movies app icon"
+            className="w-14 h-14 rounded-xl mx-auto"
+          />
           <h2 className="text-3xl font-bold text-white mb-2">Movies</h2>
           <p className="text-gray-400">
             Discover and track your favorite movies
