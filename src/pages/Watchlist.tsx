@@ -36,52 +36,84 @@ export const Watchlist = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-gray-950 border-b border-gray-700">
-        <div className="max-w-2xl mx-auto px-3 py-4 flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+      {/* Sticky Buttons */}
+      <div className="sticky top-0 z-50 flex items-center justify-between px-3 -mb-8 pt-4">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <h1 className="text-xl font-bold text-white">My Watchlist</h1>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        {/* Middle Section */}
+
+        {/* X Button */}
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
 
-      <div className="max-w-2xl mx-auto px-3 py-6">
+      <div className="flex items-center justify-between">
+        <span className="text-white font-bold text-lg mx-auto">Watchlist</span>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-3 py-6 overflow-x-hidden">
         {watchlist.length > 0 ? (
           <div className="space-y-4">
             <p className="text-sm text-gray-400">
               {watchlist.length} {watchlist.length === 1 ? "movie" : "movies"}
             </p>
-            <div className="grid grid-cols-3 gap-2">
-              {watchlist.map((item) => (
-                <MovieCard
-                  key={item.movieId}
-                  movie={{
-                    id: item.movieId,
-                    title: item.title,
-                    poster_path: item.posterPath,
-                    backdrop_path: item.backdropPath,
-                    release_date: item.releaseDate,
-                    vote_average: item.voteAverage,
-                    overview: "",
-                  }}
-                />
-              ))}
+
+            {/* ✅ Centered 3-column grid with overflow safety */}
+            <div className="w-full flex justify-center">
+              <div className="grid grid-cols-3 gap-2 w-full justify-items-center">
+                {watchlist.map((item) => (
+                  <div
+                    key={item.movieId}
+                    className="min-w-0 w-full flex justify-center"
+                  >
+                    <MovieCard
+                      movie={{
+                        id: item.movieId,
+                        title: item.title,
+                        poster_path: item.posterPath,
+                        backdrop_path: item.backdropPath,
+                        release_date: item.releaseDate,
+                        vote_average: item.voteAverage,
+                        overview: "",
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ) : (

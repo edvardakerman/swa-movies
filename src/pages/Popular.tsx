@@ -95,12 +95,19 @@ export const Popular = () => {
         </span>
       </div>
 
-      <div className="max-w-2xl mx-auto px-3 py-6 space-y-6">
+      <div className="max-w-2xl mx-auto px-3 py-6 space-y-6 overflow-x-hidden">
         {/* Movie Grid */}
-        <div className="grid grid-cols-3 gap-2">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+        <div className="w-full flex justify-center">
+          <div className="grid grid-cols-3 gap-2 w-full justify-items-center">
+            {movies.map((movie) => (
+              <div
+                key={movie.id}
+                className="min-w-0 w-full flex justify-center"
+              >
+                <MovieCard movie={movie} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Load More Button */}
@@ -109,6 +116,7 @@ export const Popular = () => {
             <p className="text-sm text-gray-400">
               Page {page} of {totalPages}
             </p>
+
             {!isLastPage ? (
               <button
                 onClick={handleLoadMore}
